@@ -2,3 +2,4 @@
 mysqldata/*
 src/composer/*
 .vscode
+docker-compose.yml
