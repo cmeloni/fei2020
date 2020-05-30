@@ -7,7 +7,7 @@ use yii\rest\ActiveController;
 /**
  * Default controller for the `apiv1` module
  */
-class UsuarioController extends ActiveController
+class PermisoController extends ActiveController
 {
-    public $modelClass = 'app\modules\apiv1\models\Usuario';
+    public $modelClass = 'app\modules\apiv1\models\Permiso';
 }
