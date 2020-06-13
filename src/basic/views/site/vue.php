@@ -29,7 +29,7 @@ $this->registerJsFile(
         <br>
         <ul>
             <li v-for="musico in musicos">
-                {{ musico.nombre }} - Discos: {{ musico.discos }}
+                {{ musico.nombre }} - Discos: {{ musico.discos | toCurrency }}
                 <button @click="musico.discos++">+</button>
                 <button @click="musico.discos--">-</button>
                 <span v-if="musico.discos === 0"> - Sin discos</span>
@@ -77,6 +77,11 @@ $this->registerJsFile(
                         total += musico.discos;
                     }
                     return total;
+                }
+            },
+            filters:{
+                toCurrency(valor){
+                    return valor.toFixed(2)
                 }
             }
         })
