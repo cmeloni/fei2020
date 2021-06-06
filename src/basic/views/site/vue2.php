@@ -13,6 +13,12 @@ $this->registerJsFile(
     ['position'=> View::POS_HEAD ]
 );
 
+$this->registerJsFile(
+    "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js",
+    ['position'=> View::POS_HEAD ]
+);
+
+
 ?>
 
 <div class="site-vue2">
@@ -28,6 +34,18 @@ $this->registerJsFile(
 
     <button class='btn btn-primary' @click="es_info = !es_info">Change</button>
 
+    <hr>
+
+    <div class="form-group">
+        <label for="cmbPermisos">Permisos</label>
+        <select class="form-control" id='cmbPermisos' v-model="permisos.selected">
+            <option v-for="permiso in permisos.data" v-bind:value="permiso.id">
+                {{ permiso.descripcion }}
+            </option>
+        </select>
+        <span>Seleccionado: {{ permisos.selected }}</span>
+    </div>
+
     </div>
 
     <script>
@@ -36,11 +54,32 @@ $this->registerJsFile(
             data: {
                 tipotexto: 'text-info',
                 es_info: true,
+                permisos: {
+                    selected: null,
+                    data: []
+                }
             }, 
             methods: {
             }, 
             computed: {
-
+            },
+            mounted() {
+                console.log(axios);
+                var that = this;
+                axios.get('/apiv1/permiso')
+                    .then(function (response) {
+                        // handle success
+                        console.log(response.data);
+                        that.permisos.data = response.data
+                        that.permisos.selected = response.data[1].id
+                    })
+                    .catch(function (error) {
+                        // handle error
+                        console.log(error);
+                    })
+                    .then(function () {
+                        // always executed
+                    });
             }
         })
     </script>

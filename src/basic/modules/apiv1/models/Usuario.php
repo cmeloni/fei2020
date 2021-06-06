@@ -11,4 +11,10 @@ class Usuario extends \app\models\Usuario
     public function extraFields(){
         return ['edad', 'permisos', 'usuarioPermisos'];
     }
+
+    public function formName()
+    {
+        return '';
+    }
+
 }
