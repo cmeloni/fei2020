@@ -146,4 +146,14 @@ class SiteController extends Controller
         return $this->render('vue2');
     }
 
+    /**
+     * Displays Components page.
+     *
+     * @return string
+     */
+    public function actionComponents()
+    {
+        return $this->render('components');
+    }
+
 }
